@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useAppSelector } from "../../../config/store";
+import DataNotFound from "../../common/DataNotFound";
 
 const MoviesTable = () => {
   const movies = useAppSelector((state) => state.movies.data);
@@ -25,12 +26,16 @@ const MoviesTable = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <DataGrid
-        rows={movies}
-        columns={columns}
-        getRowId={(row) => row.id}
-        disableRowSelectionOnClick
-      />
+      {movies && movies.length > 0 ? (
+        <DataGrid
+          rows={movies}
+          columns={columns}
+          getRowId={(row) => row.id}
+          disableRowSelectionOnClick
+        />
+      ) : (
+        <DataNotFound />
+      )}
     </Box>
   );
 };

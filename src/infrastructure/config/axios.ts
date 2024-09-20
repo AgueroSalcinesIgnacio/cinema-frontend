@@ -1,10 +1,19 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 declare const __API_URL__: string;
 
-const TIMEOUT = 1 * 60 * 1000;
-
 export const axiosInstance = axios.create({
   baseURL: __API_URL__,
-  timeout: TIMEOUT,
 });
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = Cookies.get("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);

@@ -8,6 +8,7 @@ import {
 import { OutputMovieDTO } from "../../../../domain/movies/dto/OutputMovieDTO";
 import { IMovie } from "../../../../domain/movies/model/IMovie";
 import { apiGet } from "../../../../infrastructure/apliClient";
+import { MOVIES } from "../../../../infrastructure/utils/ApiUrls";
 import { CollectionEntityState } from "../../../utils/sliceUtils";
 
 const initialState: CollectionEntityState<IMovie> = {
@@ -16,7 +17,7 @@ const initialState: CollectionEntityState<IMovie> = {
 };
 
 export const getAllMovies = createAsyncThunk("movies/getAll", async () => {
-  return await apiGet<OutputMovieDTO[]>("api/movies");
+  return await apiGet<OutputMovieDTO[]>(MOVIES);
 });
 
 export const moviesSlice = createSlice({

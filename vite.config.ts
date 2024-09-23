@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 9000,
+      host: true,
       watch: {
         usePolling: true,
       },

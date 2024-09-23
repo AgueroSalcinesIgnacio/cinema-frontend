@@ -1,5 +1,5 @@
 #Build stage
-FROM node:hydrogen-alpine3.20 
+FROM node:hydrogen-alpine3.20
 
 WORKDIR /app
 

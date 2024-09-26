@@ -1,11 +1,9 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useAppSelector } from "../../../config/store";
+import { IMovie } from "../../../../domain/movies/model/IMovie";
 import DataNotFound from "../../common/DataNotFound";
 
-const MoviesTable = () => {
-  const movies = useAppSelector((state) => state.movies.data);
-
+const MoviesTable = ({ movies }: { movies: readonly IMovie[] }) => {
   const columns: GridColDef[] = [
     {
       field: "title",
